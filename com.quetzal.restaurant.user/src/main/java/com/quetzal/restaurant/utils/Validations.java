@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 
 import com.quetzal.restaurant.enu.ExceptionEnum;
 import com.quetzal.restaurant.exception.AppException;
+import com.quetzal.restaurant.model.Role;
 import com.quetzal.restaurant.model.User;
 
 public class Validations {
@@ -23,15 +24,15 @@ public class Validations {
 			throw new AppException(HttpStatus.CONFLICT.value(), "The user does not exist or could not be found", ExceptionEnum.ERROR_ROLE_PERMISSION);
 		return user;
 	}
-	
-	public static void optionalPermission(boolean present) throws AppException {
-		if(!present)
-			throw new AppException(HttpStatus.CONFLICT.value(), "The user does not have the necessary permissions", ExceptionEnum.ERROR_SEARCHING_USER);
-	}
 
-	public static void optionalRole(boolean present) throws AppException{
-		if(!present)
+	public static Optional<Role> optionalRole(Optional<Role> role) throws AppException{
+		if(role.isEmpty()) 
 			throw new AppException(HttpStatus.CONFLICT.value(), "The role does not exist or could not be found", ExceptionEnum.ERROR_INVALID_REQUEST);
+		return role;
 	}
 
+	public static void existsUserTag(boolean exists) throws AppException{
+		if(exists)
+			throw new AppException(HttpStatus.CONFLICT.value(), "The userTag already exists", ExceptionEnum.ERROR_USER_USER_TAG);
+	}
 }

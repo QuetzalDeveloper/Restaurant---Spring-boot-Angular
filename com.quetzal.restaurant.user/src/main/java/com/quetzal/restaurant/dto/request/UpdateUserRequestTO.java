@@ -14,6 +14,7 @@ import org.hibernate.validator.constraints.UUID;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -73,6 +74,10 @@ public class UpdateUserRequestTO implements Serializable {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@FutureOrPresent(message = "The start date must be current or later than the current date")
 	private LocalDate startDate;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	@Future(message = "The start date must be current or later than the current date")
+	private LocalDate endDate;
 	
 	@NotNull(message= "The role id is empty")
 	@Positive(message= "The role id must be greater than 0")

@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -33,6 +34,11 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(e.getExceptionResponse(), HttpStatus.valueOf(e.getStatus()));
 	}
 	
+	@ExceptionHandler(HttpMediaTypeNotSupportedException.class)
+	public ResponseEntity<Object> handleHttpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException ex) {
+		AppException e = new AppException(HttpStatus.BAD_REQUEST.value(), ex.getMessage(), ExceptionEnum.ERROR_INVALID_REQUEST);
+		return new ResponseEntity<>(e.getExceptionResponse(), HttpStatus.valueOf(e.getStatus()));
+	}
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
