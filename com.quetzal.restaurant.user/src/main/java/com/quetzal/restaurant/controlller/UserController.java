@@ -6,11 +6,10 @@
  */
 package com.quetzal.restaurant.controlller;
 
-import java.util.Map;
-
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -62,6 +61,18 @@ public class UserController {
 	@GetMapping(value="getSimpleList", produces="application/json")
 	public ResponseEntity<GetUserSimpleResponseTO> getUsersSimpleByRole(@RequestHeader String userId, @RequestParam Short roleId, Pageable pageable) throws AppException {
 		GetUserSimpleResponseTO response = userService.getUsersSimplebyRole(userId, roleId, pageable);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+	
+	@DeleteMapping(value="activate", produces="application/json")
+	public ResponseEntity<Boolean> activateUser(@RequestHeader String userId, @RequestParam String activateId, @RequestParam Boolean active) throws AppException {
+		Boolean response = userService.activateUser(userId, activateId, active);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+	
+	@DeleteMapping(value="delete", produces="application/json")
+	public ResponseEntity<Boolean> deleteUser(@RequestHeader String userId, @RequestParam String deleteUserId) throws AppException {
+		Boolean response = userService.deleteUser(userId, deleteUserId);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 }

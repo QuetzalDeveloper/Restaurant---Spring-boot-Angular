@@ -85,9 +85,10 @@ public class UserServiceImp  implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public CreateUserResponseTO updateUser(String userId, @Valid UpdateUserRequestTO request) throws AppException {
 		log.info("updateUser [{}] - Request: {}", userId, request);
-		Optional<User> user = Validations.optionaUser(userRepository.findByUuidAndActiveTrueAndDeletedFalse(UUID.fromString(request.getUuid())));
+		Optional<User> user = Validations.optionalUser(userRepository.findByUuidAndActiveTrueAndDeletedFalse(UUID.fromString(request.getUuid())));
 		
 		if(!user.get().getUserTag().equals(request.getUserTag())) {
 			Validations.existsUserTag(userRepository.existsByUserTag(request.getUserTag()));
@@ -150,6 +151,50 @@ public class UserServiceImp  implements UserService {
 							)));
 		}
 		return response;		
+	}
+
+	@Override
+	@Transactional
+	public Boolean activateUser(String userId, String activateId, Boolean active) throws AppException{
+		log.info("activateUser [{}] - User to activate: {}, Active = {}", userId, activateId, active);
+		
+		if(!Utils.isUUID(activateId)) 
+			throw new AppException(HttpStatus.CONFLICT.value(), "The user to activate is invalid or empty", ExceptionEnum.ERROR_PARAM_UUID);
+		if(Utils.isNullOrEmpty(active)) 
+			throw new AppException(HttpStatus.CONFLICT.value(), "The boolean active is invalid or empty", ExceptionEnum.ERROR_INVALID_REQUEST);
+		
+		Optional<User> requestUser = userRepository.findByUuidAndActiveTrueAndDeletedFalse(UUID.fromString(userId));
+		Validations.optionalUser(requestUser);
+		Optional<User> user = userRepository.findByUuidAndDeletedFalse(UUID.fromString(activateId));
+		Validations.optionalUser(user);
+		
+		if(requestUser.get().getRole().getId() > user.get().getRole().getId())	
+			return Boolean.FALSE;
+		user.get().setActive(active);
+		userRepository.save(user.get());
+		
+		return Boolean.TRUE;
+	}
+
+	@Override
+	@Transactional
+	public Boolean deleteUser(String userId, String deleteUserId) throws AppException {
+		log.info("deleteUser [{}] - User to delete: {}", userId, deleteUserId);
+		
+		if(!Utils.isUUID(deleteUserId)) 
+			throw new AppException(HttpStatus.CONFLICT.value(), "The user to delete is invalid or empty", ExceptionEnum.ERROR_PARAM_UUID);
+		
+		Optional<User> requestUser = userRepository.findByUuidAndActiveTrueAndDeletedFalse(UUID.fromString(userId));
+		Validations.optionalUser(requestUser);
+		Optional<User> user = userRepository.findByUuidAndDeletedFalse(UUID.fromString(deleteUserId));
+		Validations.optionalUser(user);
+		
+		if(requestUser.get().getRole().getId() > user.get().getRole().getId())	
+			return Boolean.FALSE;
+		user.get().setDeleted(true);
+		userRepository.save(user.get());
+		
+		return Boolean.TRUE;
 	}
 
 }

@@ -1,0 +1,277 @@
+/**Diseño de Select con botones*/
+.animate-in {
+  animation: slideDownFade 0.6s ease-out forwards;
+}
+
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.select-wrapper {
+  width: 100%;
+  max-width: 250px;
+  display: block;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 20px;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.filter-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  margin-left: 5px;
+}
+
+.custom-select, .btn-add {
+  /* Forzamos que el padding y el border no sumen extra al alto final */
+  box-sizing: border-box;
+  /* Definimos una altura exacta para ambos */
+  height: 55px;
+  /* Alineación vertical interna */
+  display: flex;
+  align-items: center;
+}
+
+.custom-select  {
+  height: 55px;
+  line-height: 55px;      /* Debe coincidir con el height para centrar el texto */
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 18px;
+  padding-right: 45px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  appearance: none;
+  background-color: #ffffff;
+  border: 2px solid #eef0f2;
+  border-radius: 12px;
+  font-size: 18px;
+  color: #444;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  max-width: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23ffb100'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 18px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  flex-shrink: 0;
+}
+
+.btn-add {
+  justify-content: center;
+  gap: 8px;
+  padding: 0 25px;
+  background-color: #ffb100; /* Color naranja/amarillo de tu marca */
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(255, 177, 0, 0.2);
+  white-space: nowrap; /* Evita que el texto "Nuevo" se baje */
+  padding: 0 25px;
+  display: inline-flex;   /* Para que el icono y texto se centren */
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.custom-select:hover {
+  border-color: #ffb100;
+  box-shadow: 0 6px 15px rgba(255, 177, 0, 0.1);
+}
+
+.custom-select:focus {
+  border-color: #ffb100;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(255, 177, 0, 0.15);
+  transform: none;
+}
+
+.custom-select option {
+  padding: 15px;
+  font-size: 18px;
+  background: white;
+}
+
+.input-container {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+  justify-content: flex-end;
+}
+
+.btn-add:hover {
+  background-color: #e69f00;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(255, 177, 0, 0.3);
+}
+
+.btn-add:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 480px) { /* Ajuste opcional para móviles */
+  .input-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn-add {
+    width: 100%;
+  }
+}
+/*Fin diseño de select*/
+/*
+*
+*
+*
+**
+*
+*
+*
+*/
+
+
+.consulta-container {
+  padding: 2rem;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.header-section {
+  text-align:center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+h1, h3 {
+  font-weight: 300; }
+
+h1 { color: #636363; }
+
+h3 { color: #bb7b1b; }
+
+/* Filtro */
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.custom-select {
+  padding: 8px 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  cursor: pointer;
+}
+
+.custom-select:focus { border-color: #ffb100; }
+
+/* Tabla */
+.table-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.custom-table th {
+  background-color: #fff8e1; /* Amarillo muy claro */
+  color: #ff6b00; /* Naranja para encabezados */
+  text-align: left;
+  padding: 15px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.custom-table td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  color: #555;
+}
+
+.badge {
+  background: #fff3e0;
+  color: #e65100;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+/* Botones de Acción */
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-icon {
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit { background-color: #ffb100; color: white; }
+.edit:hover { background-color: #e6a000; }
+
+.delete { background-color: #ff5252; color: white; }
+.delete:hover { background-color: #d32f2f; }
+
+/* Paginación */
+.pagination {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.btns-pagination button {
+  padding: 5px 15px;
+  margin-left: 5px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btns-pagination button:hover:not(:disabled) {
+  background-color: #fff8e1;
+  color: #ff6b00;
+}
+
+

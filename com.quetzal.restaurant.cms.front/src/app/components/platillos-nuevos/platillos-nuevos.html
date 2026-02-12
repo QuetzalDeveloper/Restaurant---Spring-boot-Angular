@@ -1,0 +1,74 @@
+@if (isOpen) {
+  <div class="modal-overlay" (click)="cerrar()">
+    <div class="modal-content animate-pop" (click)="$event.stopPropagation()">
+
+      <div class="modal-header">
+        <h2>{{ titulo }}</h2>
+      </div>
+
+      <form #platilloForm="ngForm" (ngSubmit)="guardar()" class="modal-form">
+
+        <div class="form-group">
+          <label>Nombre del Platillo*</label>
+          <input type="text" [(ngModel)]="nuevoPlatillo.nombre" name="nombre"
+                 #nombre="ngModel" required maxlength="70"
+                 placeholder="Ej. Hamburguesa Especial" class="custom-input"
+                 [class.input-error]="nombre.invalid && nombre.touched">
+          @if (nombre.invalid && nombre.touched) {
+            <span class="error-text">El nombre es obligatorio (máx 70 carac.)</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label>Descripción*</label>
+          <textarea [(ngModel)]="nuevoPlatillo.descripcion" name="descripcion"
+                    #desc="ngModel" required maxlength="200"
+                    placeholder="Detalla los ingredientes..." class="custom-input textarea"
+                    [class.input-error]="desc.invalid && desc.touched"></textarea>
+          @if (desc.invalid && desc.touched) {
+            <span class="error-text">La descripción es obligatoria (máx 200 carac.)</span>
+          }
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Precio ($)*</label>
+            <input type="number" [(ngModel)]="nuevoPlatillo.precio" name="precio"
+                   #precio="ngModel" required min="0.01"
+                   placeholder="0.00" class="custom-input"
+                   [class.input-error]="precio.invalid && precio.touched">
+          </div>
+
+          <div class="form-group">
+            <label>Categoría*</label>
+            <select [(ngModel)]="nuevoPlatillo.categoria" name="categoria"
+                    #cat="ngModel" required min="1"
+                    class="custom-select"
+                    [class.input-error]="cat.invalid && cat.touched">
+              <option [value]="0" disabled>Seleccionar...</option>
+              @for (c of categorias; track c.id) {
+                <option [value]="c.id">{{ c.nombre }}</option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group switch-inline">
+          <label>Estado del platillo (Activo/Inactivo)</label>
+          <label class="switch">
+            <input type="checkbox" [(ngModel)]="nuevoPlatillo.activo" name="activo">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" (click)="cerrar()">Cancelar</button>
+          <button type="submit" class="btn-save" [disabled]="platilloForm.invalid">
+            <i class="fas fa-save"></i> Guardar Platillo
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+}

@@ -43,7 +43,7 @@ public class LoginServiceImp implements LoginService{
 	@Override
 	public LoginResposeTO login(LoginRequestTO request) throws AppException {
 		log.info("login. Request : {}", request);
-		Optional<User> login = Validations.optionaUser(userRepository.findByUserTagAndPasswordAndActiveTrueAndDeletedFalse(request.getUser(), request.getPassword()));
+		Optional<User> login = Validations.optionalUser(userRepository.findByUserTagAndPasswordAndActiveTrueAndDeletedFalse(request.getUser(), request.getPassword()));
 		List<RolePermission> permissionList = rolePermissionRepository.findAllByRoleAndActiveTrueAndDeletedFalse(login.get().getRole());
 		LoginResposeTO response = new LoginResposeTO();
 		response.setUserId(login.get().getUuid().toString());
@@ -51,6 +51,7 @@ public class LoginServiceImp implements LoginService{
 		response.setRole(login.get().getRole().getId());
 		response.setContent(null);
 		response.setContent(permissionList.stream().map(rp -> rp.getPermission().getKey()).toList());
+		response.setUserName(login.get().getName() +" "+ login.get().getLastName());
 		
 		return response;
 	}

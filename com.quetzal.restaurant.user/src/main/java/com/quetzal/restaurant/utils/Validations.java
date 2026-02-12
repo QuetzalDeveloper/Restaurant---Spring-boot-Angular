@@ -19,9 +19,9 @@ public class Validations {
 	
 	private Validations() {}
 
-	public static Optional<User> optionaUser(Optional<User> user) throws AppException {
+	public static Optional<User> optionalUser(Optional<User> user) throws AppException {
 		if(user.isEmpty()) 
-			throw new AppException(HttpStatus.CONFLICT.value(), "The user does not exist or could not be found", ExceptionEnum.ERROR_ROLE_PERMISSION);
+			throw new AppException(HttpStatus.CONFLICT.value(), "The user does not exist or could not be found", ExceptionEnum.ERROR_SEARCHING_USER);
 		return user;
 	}
 

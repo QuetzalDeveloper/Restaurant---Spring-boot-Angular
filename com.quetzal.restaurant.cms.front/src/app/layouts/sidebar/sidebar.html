@@ -1,0 +1,60 @@
+<nav class="sidebar" [class.close]="isClosed">
+  <header>
+    <div class="image-text">
+      <span class="image">
+        <img src="ElManjarLogo.png" width="85%" alt="logo">
+      </span>
+    </div>
+
+    <i class="fas fa-chevron-right toggle" (click)="toggleSidebar()"></i>
+  </header>
+
+  <div class="menu-bar">
+    <div class="menu">
+
+      <div class="text div_color">
+        <span class="welcome">Bienvenid@</span>
+      </div>
+      <div class="text div_color">
+        <span class="username">{{userName}}</span>
+      </div>
+
+        <li class="nav-link">
+          <a [routerLink]="['/platillos']" routerLinkActive="active">
+            <i class="fas fa-utensils icon"></i>
+            <span class="text nav-text">Platillos</span>
+          </a>
+        </li>
+
+        <li class="nav-link">
+          <a [routerLink]="['/404']" routerLinkActive="active">
+            <i class="fas fa-users icon"></i>
+            <span class="text nav-text">Usuarios</span>
+          </a>
+        </li>
+
+        <li class="nav-link">
+          <a [routerLink]="['/404']" routerLinkActive="active">
+            <i class="fas fa-money-bill-wave icon"></i>
+            <span class="text nav-text">Ventas</span>
+          </a>
+        </li>
+
+        <li class="nav-link">
+          <a [routerLink]="['/404']" routerLinkActive="active">
+            <i class="fas fa-file-lines icon"></i>
+            <span class="text nav-text">Reportes</span>
+          </a>
+        </li>
+    </div>
+
+    <div class="bottom-content">
+      <li class="">
+        <a href="#">
+          <i class="fas fa-sign-out-alt icon"></i>
+          <span class="text nav-text">Cerrar sesión</span>
+        </a>
+      </li>
+    </div>
+  </div>
+</nav>

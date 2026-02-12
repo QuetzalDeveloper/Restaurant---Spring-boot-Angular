@@ -1,0 +1,90 @@
+<div class="consulta-container">
+  <div class="header-section">
+    <h1>Consulta de Platillos</h1>
+  </div>
+
+  <div><br><br></div>
+
+  <div class="input-container">
+    <div class="select-wrapper">
+      <select
+        id="comboCategorias"
+        [(ngModel)]="categoriaSeleccionadaId"
+        (change)="onSeleccionChange()"
+        class="custom-select">
+        <option [value]="0">TODOS</option>
+        @for (cat of listaCategorias; track cat.id) {
+          <option [value]="cat.id">
+            {{ cat.nombre }}
+          </option>
+        } @empty {
+          <option disabled>Cargando categorías...</option>
+        }
+      </select>
+    </div>
+
+    <button class="btn-add" (click)="showNewCategoryForm=true">
+      <i class="fas fa-list"></i>
+      <span>Nueva Categoría</span>
+    </button>
+     <app-categoria-nuevo
+      [isOpen]="showNewCategoryForm"
+      (close)="showNewCategoryForm = false"
+      (save)="newCategory($event)">
+    </app-categoria-nuevo>
+
+    <button class="btn-add" (click)="prepararNuevo()">
+      <i class="fas fa-plus"></i>
+      <span>Nuevo Platillo</span>
+    </button>
+    <app-platillos-nuevos
+      [isOpen]="showNewDessertForm"
+      [categorias]="listaCategorias"
+      [platilloAEditar]="platilloSeleccionado"
+      (close)="showNewDessertForm = false"
+      (save)="newDessert($event)">
+    </app-platillos-nuevos>
+  </div>
+
+  <div><br></div>
+
+  <div class="table-card">
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Categoría</th>
+          <th>Precio</th>
+          <th>Estado</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of platillos">
+          <td><strong>{{ p.nombre }}</strong></td>
+          <td class="text-muted">{{ p.descripcion }}</td>
+          <td><span class="badge">{{ obtenerNombreCategoria(p.categoria) }}</span></td>
+          <td>{{ p.precio | currency }}</td>
+          <td class="text-muted">@if (p.estado) { Activo } @else { Inactivo }</td>
+          <td class="actions">
+            <button class="btn-icon edit" (click)="prepararEdicion(p)" title="Editar">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn-icon delete" (click)="eliminarPlatillo(p.id)" title="Eliminar">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pagination">
+      <span>Mostrando página {{ paginaActual }} de {{ (totalRegistros / registrosPorPagina) }}</span>
+      <div class="btns-pagination">
+        <button [disabled]="paginaActual === 1" (click)="cambiarPagina(paginaActual - 1)">Anterior</button>
+        <button (click)="cambiarPagina(paginaActual + 1)">Siguiente</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<hgroup>
+  <h1>Sistema de administración</h1>
+  <h3>Restaurante el Manjar</h3>
+</hgroup>
+
+<form>
+  <div class="group">
+    <input type="text" #user>
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label>Usuario</label>
+  </div>
+  <div class="group">
+    <input type="password" #pass>
+    <span class="highlight"></span>
+    <span class="bar"></span>
+    <label>Contraseña</label>
+  </div>
+  <button type="button" class="button buttonOrange" (click)="onLogin(user.value, pass.value)">Entrar
+    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+  </button>
+</form>
+
+<footer>
+  <img src="ElManjarLogo.png" alt="Logo de mi App">
+  <p>By Quetzal Developer</p>
+</footer>

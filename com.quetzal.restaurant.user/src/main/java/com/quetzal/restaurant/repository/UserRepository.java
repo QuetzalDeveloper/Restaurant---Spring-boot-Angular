@@ -69,4 +69,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	 */
 	Page<User> findAllByRoleIdAndActiveTrueAndDeletedFalse(Short roleId, Pageable pageable);
 
+	/**
+	 * Returns a user by their UUID and if it's not deleted
+	 * @param uuid
+	 * @return
+	 */
+	Optional<User> findByUuidAndDeletedFalse(UUID uuid);
+
 }

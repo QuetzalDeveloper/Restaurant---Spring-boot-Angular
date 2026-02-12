@@ -24,5 +24,6 @@ public class LoginResposeTO implements Serializable {
 	private Short role;
 	private String roleName;
 	private List<String> content;
+	private String userName;
 
 }

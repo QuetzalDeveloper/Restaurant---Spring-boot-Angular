@@ -55,4 +55,22 @@ public interface UserService {
 	 */
 	GetUserSimpleResponseTO getUsersSimplebyRole(String userId, Short roleId, Pageable pageable) throws AppException;
 
+	/**
+	 * Activate or deactivate a user
+	 * @param userId
+	 * @param activateId
+	 * @param active
+	 * @return
+	 * @throws AppException 
+	 */
+	Boolean activateUser(String userId, String activateId, Boolean active) throws AppException;
+
+	/**
+	 * Delete a user
+	 * @param userId
+	 * @param deleteUserId
+	 * @return
+	 */
+	Boolean deleteUser(String userId, String deleteUserId) throws AppException ;
+
 }
