@@ -10,7 +10,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 	    "com.quetzal.restaurant.globals"
 	})
 	@EnableJpaRepositories(basePackages = {
-	    "com.quetzal.restaurant.repository"
+	    "com.quetzal.restaurant.repository",
+	    "com.quetzal.restaurant.globals.provider"
 	})
 	@EntityScan(basePackages = {
 	    "com.quetzal.restaurant.globals.model" // <--- ¡Asegúrate de que este sea el paquete exacto de RolePermission!
