@@ -12,13 +12,13 @@ import org.springframework.context.annotation.Configuration;
 
 import com.quetzal.restaurant.globals.cors.CorsConfig;
 import com.quetzal.restaurant.globals.filter.GlobalFilterPermission;
-import com.quetzal.restaurant.globals.provider.RolePermissionProvider;
+import com.quetzal.restaurant.globals.provider.RolePermissionAuthRepo;
 
 @Configuration
 public class AutoConfiguration {
 
 	@Bean
-    public GlobalFilterPermission globalFilterPermission(RolePermissionProvider rolePermissionRepository) {
+    public GlobalFilterPermission globalFilterPermission(RolePermissionAuthRepo rolePermissionRepository) {
         return new GlobalFilterPermission(rolePermissionRepository);
     }
 

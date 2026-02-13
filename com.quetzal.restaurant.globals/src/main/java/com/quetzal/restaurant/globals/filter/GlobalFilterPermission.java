@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
-import com.quetzal.restaurant.globals.provider.RolePermissionProvider;
+import com.quetzal.restaurant.globals.provider.RolePermissionAuthRepo;
 import com.quetzal.restaurant.globals.utils.Utils;
 
 import jakarta.servlet.Filter;
@@ -38,10 +38,10 @@ public class GlobalFilterPermission implements Filter {
 	
 	private static Logger log = LoggerFactory.getLogger(GlobalFilterPermission.class);
 	
-	private RolePermissionProvider rolePermissionRepository;
+	private RolePermissionAuthRepo rolePermissionRepository;
 	
 	
-	public GlobalFilterPermission(RolePermissionProvider rolePermissionRepository) {
+	public GlobalFilterPermission(RolePermissionAuthRepo rolePermissionRepository) {
 		super();
 		this.rolePermissionRepository = rolePermissionRepository;
 	}
