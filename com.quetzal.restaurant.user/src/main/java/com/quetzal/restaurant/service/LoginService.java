@@ -8,7 +8,7 @@ package com.quetzal.restaurant.service;
 
 import com.quetzal.restaurant.dto.request.LoginRequestTO;
 import com.quetzal.restaurant.dto.response.LoginResposeTO;
-import com.quetzal.restaurant.exception.AppException;
+import com.quetzal.restaurant.globals.exception.AppException;
 
 public interface LoginService {
 

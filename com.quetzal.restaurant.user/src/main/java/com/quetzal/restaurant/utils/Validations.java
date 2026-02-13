@@ -10,10 +10,10 @@ import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 
-import com.quetzal.restaurant.enu.ExceptionEnum;
-import com.quetzal.restaurant.exception.AppException;
-import com.quetzal.restaurant.model.Role;
-import com.quetzal.restaurant.model.User;
+import com.quetzal.restaurant.globals.enu.ExceptionEnum;
+import com.quetzal.restaurant.globals.exception.AppException;
+import com.quetzal.restaurant.globals.model.Role;
+import com.quetzal.restaurant.globals.model.User;
 
 public class Validations {
 	

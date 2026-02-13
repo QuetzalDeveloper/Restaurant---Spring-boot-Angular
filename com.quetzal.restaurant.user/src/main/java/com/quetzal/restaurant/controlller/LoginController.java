@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.quetzal.restaurant.dto.request.LoginRequestTO;
 import com.quetzal.restaurant.dto.response.LoginResposeTO;
-import com.quetzal.restaurant.exception.AppException;
+import com.quetzal.restaurant.globals.exception.AppException;
 import com.quetzal.restaurant.service.LoginService;
 
 import jakarta.validation.Valid;

@@ -4,7 +4,7 @@
  * Author : Diego Hernandez Cote
  * Email : quetzal.developer@gmail.com
  */
-package com.quetzal.restaurant.enu;
+package com.quetzal.restaurant.globals.enu;
 
 import lombok.Getter;
 

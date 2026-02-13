@@ -14,12 +14,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.quetzal.restaurant.model.Role;
-import com.quetzal.restaurant.model.RolePermission;
+import com.quetzal.restaurant.globals.model.Role;
+import com.quetzal.restaurant.globals.model.RolePermission;
 
 @Repository
 public interface RolePermissionRepository extends JpaRepository<RolePermission, Long> {
-
+	
 	/**
 	 * Returns the list of permissions for a specific role
 	 * @param role
@@ -43,5 +43,4 @@ public interface RolePermissionRepository extends JpaRepository<RolePermission, 
 			+ " inner join account.role r on r.id = rp.role_id inner join account.user u on u.role_id = r.id and u.active= true and u.deleted = false"
 			+ " where u.uuid = :uuid", nativeQuery=true )
 	List<String> getPathPermissionByUuid(UUID uuid);
-
 }

@@ -4,7 +4,7 @@
  * Author : Diego Hernandez Cote
  * Email : quetzal.developer@gmail.com
  */
-package com.quetzal.restaurant.exception;
+package com.quetzal.restaurant.globals.exception;
 
 import java.io.Serializable;
 

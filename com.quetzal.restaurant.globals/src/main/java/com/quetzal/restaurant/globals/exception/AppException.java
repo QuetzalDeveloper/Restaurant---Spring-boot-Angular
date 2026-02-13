@@ -4,9 +4,9 @@
  * Author : Diego Hernandez Cote
  * Email : quetzal.developer@gmail.com
  */
-package com.quetzal.restaurant.exception;
+package com.quetzal.restaurant.globals.exception;
 
-import com.quetzal.restaurant.enu.ExceptionEnum;
+import com.quetzal.restaurant.globals.enu.ExceptionEnum;
 
 import lombok.Getter;
 

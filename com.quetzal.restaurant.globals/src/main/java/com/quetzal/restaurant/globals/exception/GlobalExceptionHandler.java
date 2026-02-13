@@ -4,7 +4,7 @@
  * Author : Diego Hernandez Cote
  * Email : quetzal.developer@gmail.com
  */
-package com.quetzal.restaurant.exception;
+package com.quetzal.restaurant.globals.exception;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.quetzal.restaurant.enu.ExceptionEnum;
+import com.quetzal.restaurant.globals.enu.ExceptionEnum;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {

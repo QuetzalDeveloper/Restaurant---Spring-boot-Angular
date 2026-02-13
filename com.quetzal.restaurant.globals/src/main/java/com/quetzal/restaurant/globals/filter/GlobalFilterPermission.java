@@ -4,7 +4,7 @@
  * Author : Diego Hernandez Cote
  * Email : quetzal.developer@gmail.com
  */
-package com.quetzal.restaurant.config;
+package com.quetzal.restaurant.globals.filter;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -21,8 +21,8 @@ import org.springframework.stereotype.Component;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
-import com.quetzal.restaurant.repository.RolePermissionRepository;
-import com.quetzal.restaurant.utils.Utils;
+import com.quetzal.restaurant.globals.provider.RolePermissionProvider;
+import com.quetzal.restaurant.globals.utils.Utils;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
@@ -38,10 +38,10 @@ public class GlobalFilterPermission implements Filter {
 	
 	private static Logger log = LoggerFactory.getLogger(GlobalFilterPermission.class);
 	
-	private RolePermissionRepository rolePermissionRepository;
+	private RolePermissionProvider rolePermissionRepository;
 	
 	
-	public GlobalFilterPermission(RolePermissionRepository rolePermissionRepository) {
+	public GlobalFilterPermission(RolePermissionProvider rolePermissionRepository) {
 		super();
 		this.rolePermissionRepository = rolePermissionRepository;
 	}

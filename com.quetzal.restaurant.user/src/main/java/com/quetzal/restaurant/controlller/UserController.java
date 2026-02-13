@@ -24,7 +24,7 @@ import com.quetzal.restaurant.dto.request.UpdateUserRequestTO;
 import com.quetzal.restaurant.dto.response.CreateUserResponseTO;
 import com.quetzal.restaurant.dto.response.GetUserResponseTO;
 import com.quetzal.restaurant.dto.response.GetUserSimpleResponseTO;
-import com.quetzal.restaurant.exception.AppException;
+import com.quetzal.restaurant.globals.exception.AppException;
 import com.quetzal.restaurant.service.UserService;
 
 import jakarta.validation.Valid;

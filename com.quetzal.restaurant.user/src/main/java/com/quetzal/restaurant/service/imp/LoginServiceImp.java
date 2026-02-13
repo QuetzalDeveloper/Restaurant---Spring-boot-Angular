@@ -11,19 +11,16 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.quetzal.restaurant.dto.request.LoginRequestTO;
 import com.quetzal.restaurant.dto.response.LoginResposeTO;
-import com.quetzal.restaurant.enu.ExceptionEnum;
-import com.quetzal.restaurant.exception.AppException;
-import com.quetzal.restaurant.model.RolePermission;
-import com.quetzal.restaurant.model.User;
+import com.quetzal.restaurant.globals.exception.AppException;
+import com.quetzal.restaurant.globals.model.RolePermission;
+import com.quetzal.restaurant.globals.model.User;
 import com.quetzal.restaurant.repository.RolePermissionRepository;
 import com.quetzal.restaurant.repository.UserRepository;
 import com.quetzal.restaurant.service.LoginService;
-import com.quetzal.restaurant.utils.Utils;
 import com.quetzal.restaurant.utils.Validations;
 
 @Service

@@ -16,7 +16,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.quetzal.restaurant.dto.GetUserTO;
-import com.quetzal.restaurant.model.User;
+import com.quetzal.restaurant.globals.model.User;
+
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {

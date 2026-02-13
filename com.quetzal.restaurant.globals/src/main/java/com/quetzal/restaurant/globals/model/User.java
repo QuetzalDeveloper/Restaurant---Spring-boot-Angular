@@ -4,7 +4,7 @@
  * Author : Diego Hernandez Cote
  * Email : quetzal.developer@gmail.com
  */
-package com.quetzal.restaurant.model;
+package com.quetzal.restaurant.globals.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
