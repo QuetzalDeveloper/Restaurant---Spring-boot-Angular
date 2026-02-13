@@ -7,15 +7,13 @@
 package com.quetzal.restaurant.repository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.quetzal.restaurant.model.Role;
-import com.quetzal.restaurant.model.RolePermission;
+import com.quetzal.restaurant.globals.model.RolePermission;
 
 @Repository
 public interface RolePermissionRepository extends JpaRepository<RolePermission, Long> {
