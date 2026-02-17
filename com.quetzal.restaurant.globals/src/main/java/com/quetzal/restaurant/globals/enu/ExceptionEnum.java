@@ -20,6 +20,8 @@ public enum ExceptionEnum {
 	ERROR_ROLE_PERMISSION("E007", "ERROR_ROLE_PERMISSION", "The permission does not exist or could not be found"),
 	ERROR_USER_USER_TAG("E008", "ERROR_USER_USER_TAG", "Error with the user tag of the user"), 
 	ERROR_PARAM_UUID("E009", "ERROR_PARAM_UUID", "Error with the user uuid of the user"),
+	CATEGORY_NAME_ALREADY_EXISTS("E010", "CATEGORY_NAME_ALREADY_EXISTS", "The category name already exists"),
+	CATEGORY_NOT_FOUND("E011", "CATEGORY_NOT_FOUND0", "The category does not exist")
 	;
 	
 	private String code;

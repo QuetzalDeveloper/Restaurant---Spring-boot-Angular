@@ -1,4 +1,10 @@
 export interface CategoriaCombo {
   id: number;
-  nombre: string;
+  name: string;
+}
+
+export interface Categoria {
+  id: number;
+  name: string;
+  active: boolean;
 }

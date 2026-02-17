@@ -6,11 +6,9 @@
  */
 package com.quetzal.restaurant.globals.config;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.quetzal.restaurant.globals.cors.CorsConfig;
 import com.quetzal.restaurant.globals.filter.GlobalFilterPermission;
 import com.quetzal.restaurant.globals.provider.RolePermissionAuthRepo;
 
@@ -22,9 +20,4 @@ public class AutoConfiguration {
         return new GlobalFilterPermission(rolePermissionRepository);
     }
 
-    @Bean
-    @ConditionalOnMissingBean
-    public CorsConfig sharedCorsConfig() {
-        return new CorsConfig();
-    }
 }

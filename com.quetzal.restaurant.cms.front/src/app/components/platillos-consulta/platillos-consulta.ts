@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CategoriaCombo } from '../../interfaces/CategoryService';
-import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
 import { PlatillosNuevos } from '../platillos-nuevos/platillos-nuevos';
 import { CategoriaNuevo } from '../categoria-nuevo/categoria-nuevo';
+import { MenuService } from '../../services/menu.service';
+import Swal from 'sweetalert2';
+import { ERROR_CATALOG } from '../../config/ERROR_CATALOG';
 
 @Component({
   selector: 'app-platillos-consulta',
@@ -24,6 +25,8 @@ export class PlatillosConsulta implements OnInit {
   //Nueva categoria form
   showNewCategoryForm: boolean = false;
 
+  constructor(private menuService: MenuService, private cdr: ChangeDetectorRef) {}
+
   //Al iniciar o abrir la pagina
   ngOnInit(): void {
     this.getCategory();
@@ -31,9 +34,10 @@ export class PlatillosConsulta implements OnInit {
 
   // Logica select
   getCategory() : void {
-    this.getCategorias().subscribe({
+    this.menuService.getCategories().subscribe({
       next: (data) => {
         this.listaCategorias = data;
+        this.cdr.detectChanges();
       },
       error: (err) => console.error('Error al cargar categorías', err)
     });
@@ -70,16 +74,23 @@ export class PlatillosConsulta implements OnInit {
 
   obtenerNombreCategoria(idCategoria: number): string {
     const categoria = this.listaCategorias.find(cat => cat.id === idCategoria);
-    return categoria ? categoria.nombre : 'Sin Categoría';
+    return categoria ? categoria.name : 'Sin Categoría';
   }
 
   //Logica de nueva categoria
   newCategory(datos: any) : void {
     this.showNewCategoryForm = true;
-    // 1. Aquí llamarías a tu servicio para guardar en la BD
-    // this.platilloService.crear(datos).subscribe(...);
     this.showNewCategoryForm = false;
-    alert(`Categoria ${datos.nombre} creado con éxito`);
+    this.menuService.upsertCategory(datos).subscribe({
+      next: (response) => {
+        Swal.fire("Éxito", "Se ha guardado con éxito", 'success');
+        this.getCategory();
+      },
+      error: (err) => {
+        Swal.fire("Error", ERROR_CATALOG[err.error.code], 'error');
+      }
+    });
+
   }
 
   // Datos de ejemplo de platillos (simulando respuesta del servicio)
@@ -109,17 +120,4 @@ export class PlatillosConsulta implements OnInit {
     // Llamada al servicio con la nueva página
   }
 
-  getCategorias(): Observable<CategoriaCombo[]> {
-    const datosSimulados: CategoriaCombo[] = [
-      { id: 1, nombre: 'Ensaladas' },
-      { id: 2, nombre: 'Plato Fuerte' },
-      { id: 3, nombre: 'Infantil' },
-      { id: 4, nombre: 'Bebidas' },
-      { id: 5, nombre: 'Postres' },
-      { id: 6, nombre: 'Sopas' }
-    ];
-
-    // Simulamos un retraso de red de 500ms
-    return of(datosSimulados).pipe(delay(500));
-  }
 }

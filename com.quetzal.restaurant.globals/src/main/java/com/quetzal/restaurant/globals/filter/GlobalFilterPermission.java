@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -33,7 +34,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Component
-@Order(1)
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class GlobalFilterPermission implements Filter {
 	
 	private static Logger log = LoggerFactory.getLogger(GlobalFilterPermission.class);
@@ -60,6 +61,17 @@ public class GlobalFilterPermission implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         String path = httpRequest.getRequestURI();
+        
+        httpResponse.setHeader("Access-Control-Allow-Origin", "*"); 
+        httpResponse.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        httpResponse.setHeader("Access-Control-Max-Age", "3600");
+        httpResponse.setHeader("Access-Control-Allow-Headers", "Content-Type, userId, X-Requested-With");
+        httpResponse.setHeader("Access-Control-Expose-Headers", "userId");
+        
+        if ("OPTIONS".equalsIgnoreCase(httpRequest.getMethod())) {
+        	httpResponse.setStatus(HttpServletResponse.SC_OK);
+            return; // <--- ESTO ES VITAL. No debe ejecutar chain.doFilter() ni tu lógica de permisos.
+        }
 
 		if (!publicEndpoint.contains(path)) {
 			String uuid = httpRequest.getHeader("userId");

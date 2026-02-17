@@ -15,7 +15,7 @@
         <option [value]="0">TODOS</option>
         @for (cat of listaCategorias; track cat.id) {
           <option [value]="cat.id">
-            {{ cat.nombre }}
+            {{ cat.name }}
           </option>
         } @empty {
           <option disabled>Cargando categorías...</option>

@@ -14,8 +14,9 @@ export class CategoriaNuevo {
   @Output() save = new EventEmitter<any>();
 
   nuevaCategoria = {
-    nombre:'',
-    activo: true
+    id:0,
+    name:'',
+    active: true
   }
 
   cerrar() {
@@ -23,14 +24,14 @@ export class CategoriaNuevo {
   }
 
   guardar() {
-    if (this.nuevaCategoria.nombre) {
+    if (this.nuevaCategoria.name) {
       this.save.emit(this.nuevaCategoria);
       this.resetForm();
     }
   }
 
   resetForm() {
-    this.nuevaCategoria = { nombre: '', activo: true };
+    this.nuevaCategoria = { id: 0, name: '', active: true };
   }
 
 }

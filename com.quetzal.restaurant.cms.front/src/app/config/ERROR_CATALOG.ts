@@ -8,5 +8,7 @@ export const ERROR_CATALOG: { [key: string]: string } = {
   'E007': 'No tienes permiso para realizar esta acción',
   'E008': 'El usuario no existe o ya ha sido usado',
   'E009': 'Error en el identificador del usuario',
+  'E010': 'La categoría ya existe',
+  'E011': 'La categoría no se encuentra',
   'DEFAULT': 'Ha ocurrido un error inesperado.'
 };

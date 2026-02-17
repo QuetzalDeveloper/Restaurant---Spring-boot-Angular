@@ -28,4 +28,9 @@ public class Validations {
 		if(exists)
 			throw new AppException(HttpStatus.CONFLICT.value(), "The userTag already exists", ExceptionEnum.ERROR_USER_USER_TAG);
 	}
+
+	public static void optionalCategory(boolean present)  throws AppException{
+		if(!present) 
+			throw new AppException(HttpStatus.CONFLICT.value(), "The Category does not exist or could not be found", ExceptionEnum.CATEGORY_NOT_FOUND);
+	}
 }

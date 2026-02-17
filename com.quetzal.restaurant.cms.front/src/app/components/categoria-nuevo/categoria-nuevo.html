@@ -10,7 +10,7 @@
 
         <div class="form-group">
           <label>Nombre de la categoría*</label>
-          <input type="text" [(ngModel)]="nuevaCategoria.nombre" name="nombre"
+          <input type="text" [(ngModel)]="nuevaCategoria.name" name="nombre"
                  #nombre="ngModel" required maxlength="70"
                  placeholder="Ej. Sopas" class="custom-input"
                  [class.input-error]="nombre.invalid && nombre.touched">
@@ -22,7 +22,7 @@
         <div class="form-group switch-inline">
           <label>Estado de la categoría (Activo/Inactivo)</label>
           <label class="switch">
-            <input type="checkbox" [(ngModel)]="nuevaCategoria.activo" name="activo">
+            <input type="checkbox" [(ngModel)]="nuevaCategoria.active" name="activo">
             <span class="slider round"></span>
           </label>
         </div>
